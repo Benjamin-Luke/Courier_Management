@@ -1,0 +1,9 @@
+kartikey123,kartikey123,Kartikey,Kartikey@gmail.com,123 Main St,123-456-7890
+
+aviral456,aviral456,Aviral,aviral@gmail.com,456 Elm St, 456-789-1230
+
+aditya789,aditya789,Aditya,aditya@gmail.com,789 Oak St,789-123-4560
+
+vasu123,vasu123,Vasu,vasu@gmail.com,new street,790-987-7677
+
+ben123,ben123,ben,ben@gmail.com,new york,908-866-9687
