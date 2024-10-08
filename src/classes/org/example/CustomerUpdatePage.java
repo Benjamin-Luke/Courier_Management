@@ -18,8 +18,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import java.sql.*;
 
 public class CustomerUpdatePage {
+
+    private String url = "jdbc:mysql://127.0.0.1:3306/school_management";
+    private String user = "ben";
+    private String password = "example-password";
+
     public CustomerUpdatePage() {
         JFrame frame = new JFrame("Update Customer Info");
         frame.setDefaultCloseOperation(3);
@@ -76,7 +82,7 @@ public class CustomerUpdatePage {
         frame.add(buttonPanel, "West");
         frame.add(centerPanel, "Center");
         frame.setVisible(true);
-        updateButton.addActionListener((e) -> {
+        updateButton.addActionListener((event) -> {
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
             String name = nameField.getText();
@@ -85,12 +91,26 @@ public class CustomerUpdatePage {
             String phoneNumber = phoneField.getText();
 
             try {
-                PrintWriter writer = new PrintWriter(new FileWriter("C:\\Users\\benja\\OneDrive\\Desktop\\Courier_Management\\src\\main\\java\\org\\example\\Customer.txt", true));
-                writer.println("\n" + username + "," + password + "," + name + "," + email + "," + address + "," + phoneNumber);
-                writer.close();
-            } catch (IOException var14) {
-                IOException ex = var14;
-                ex.printStackTrace();
+                Connection connection = DriverManager.getConnection(url, user, password);
+                Statement statement = connection.createStatement();
+
+                String query = sql.replace("$table",table);
+                statement.executeQuery(query);
+
+                ResultSet resultSet = statement.getResultSet();
+
+                while (resultSet.next()) {
+                    list.add(resultSet.getString("name"));
+                }
+
+
+
+
+//                PrintWriter writer = new PrintWriter(new FileWriter("C:\\Users\\benja\\OneDrive\\Desktop\\Courier_Management\\src\\main\\java\\org\\example\\Customer.txt", true));
+//                writer.println("\n" + username + "," + password + "," + name + "," + email + "," + address + "," + phoneNumber);
+//                writer.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
             usernameField.setText("");
