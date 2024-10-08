@@ -94,13 +94,12 @@ public class CustomerUpdatePage {
                 Connection connection = DriverManager.getConnection(url, user, password);
                 Statement statement = connection.createStatement();
 
-                String query = sql.replace("$table",table);
+                String query = "";
                 statement.executeQuery(query);
 
                 ResultSet resultSet = statement.getResultSet();
 
                 while (resultSet.next()) {
-                    list.add(resultSet.getString("name"));
                 }
 
 
